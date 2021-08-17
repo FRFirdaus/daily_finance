@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>    
+    <record model="ir.ui.view" id="finance_report_form_wizard">
+        <field name="name">Print Raport</field>
+        <field name="model">finance.report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="partner_id" required="1"/>
+                        <field name="select_all"/>
+                    </group>
+                    <group>
+                        <field name="start_date" attrs="{'invisible': [('select_all', '=', True)]}"/>
+                        <field name="end_date" attrs="{'invisible': [('select_all', '=', True)]}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="create_report" type="object" string="Create" class="btn btn-primary"/>  
+                    <button string="Cancel" class="btn-default" special="cancel"/>   
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="finance_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Create Finance Report</field>
+        <field name="res_model">finance.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

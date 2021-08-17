@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="aflowz_static_token_config_settings" model="ir.ui.view">
+        <field name="name">static_token_settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Daily_Finance" string="Daily Finance" data-key="daily_finance">
+                    <div id="whatsapp_setting">
+                        <h2>Twilio Whatsapp Settings</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-12 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <div class="content-group">
+                                        <div class="mt16 row">
+                                            <label for="finance_account_sid" string="Twilio Account SID" class="col-xs-3 col-md-3 o_light_label o_form_label"/>
+                                            <field name="finance_account_sid" class="font-weight-bold"/>
+                                            <label for="finance_auth_token" string="Twilio Auth Token" class="col-xs-3 col-md-3 o_light_label o_form_label"/>
+                                            <field name="finance_auth_token" class="font-weight-bold"/>
+                                            <label for="finance_mobile" string="Twilio Mobile" class="col-xs-3 col-md-3 o_light_label o_form_label"/>
+                                            <field name="finance_mobile" class="font-weight-bold"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

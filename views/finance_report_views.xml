@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="finance_report_tree_view" model="ir.ui.view">
+        <field name="name">finance_report_tree</field>
+        <field name="model">finance.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="finance_report_form_view" model="ir.ui.view">
+        <field name="name">finance_report_form</field>
+        <field name="model">finance.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="create_date"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <field name="report_line_ids">
+                        <tree editable="bottom">
+                            <field name="finance_report_id" invisible="1"/>
+                            <field name="type"/>
+                            <field name="food"/>
+                            <field name="salary"/>
+                            <field name="entertain"/>
+                            <field name="bill"/>
+                            <field name="other"/>
+                            <field name="total"/>
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="total_balance"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="finance_report_action" model="ir.actions.act_window">
+        <field name="name">Finance Report</field>
+        <field name="res_model">finance.report</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

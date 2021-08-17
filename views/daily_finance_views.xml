@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="daily_finance_tree_view" model="ir.ui.view">
+        <field name="name">daily_finance_tree</field>
+        <field name="model">daily.finance</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="type=='outcome'" decoration-success="type=='income'">
+                <field name="partner_id"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="date"/>
+                <field name="type"/>
+                <field name="usage" string="Balance Type"/>
+                <field name="balance" sum="Total Balance" widget="monetary"/>
+                <field name="emoji" string=" "/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="daily_finance_form_view" model="ir.ui.view">
+        <field name="name">daily_finance_form</field>
+        <field name="model">daily.finance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="type"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="usage"/>
+                            <field name="total" widget="monetary"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="daily_finance_action" model="ir.actions.act_window">
+        <field name="name">Daily Finance</field>
+        <field name="res_model">daily.finance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

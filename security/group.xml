@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="daily_finance_groups">
+        <field name="name">Daily Finance Group</field>
+        <field name="description">Access Right Daily Finance</field>
+    </record>
+
+    <!-- Aflowz Academic Groups -->
+    <record id="group_daily_finance_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="daily_finance_groups"/>
+        <field name="comment">The user will have access to Daily Finance.</field>
+    </record>
+</odoo>

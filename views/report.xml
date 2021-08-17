@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <report
+            id="finance_pdf_report"
+            model="finance.report"
+            string="Print Raport as PDF"
+            report_type="qweb-pdf"
+            name="daily_finance.report_finance"
+            file="daily_finance.report_finance"
+            print_report_name="(object._get_report_base_filename())"
+        />
+    </data>
+</odoo>
