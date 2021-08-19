@@ -47,7 +47,7 @@
                         <h2 style="color: white !important;"><b>FINANCE REPORT DOCUMENT</b></h2>
                     </div>
                     <div class="col-4">
-                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:50pt;max-width:100%;margin-right:65px;" class="pull-right"/>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:50pt;max-width:100%;margin-right:65px;"/>
                     </div>
                 </div>
                 
@@ -81,13 +81,13 @@
                 <table>
                     <thead>
                         <tr class="active" style="background-color:#ebb43f !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
-                            <th width="100px" class="text-center" style="color: white">Food</th>
-                            <th width="100px" class="text-center" style="color: white">Salary</th>
-                            <th width="100px" class="text-center" style="color: white">Entertainment</th>
-                            <th width="100px" class="text-center" style="color: white">Bill</th>
-                            <th width="100px" class="text-center" style="color: white">Charity</th>
-                            <th width="100px" class="text-center" style="color: white">Other</th>
-                            <th width="100px" class="text-center" style="color: white">Total</th>
+                            <th width="110px" class="text-center" style="color: white">Food</th>
+                            <th width="110px" class="text-center" style="color: white">Salary</th>
+                            <th width="110px" class="text-center" style="color: white">Entertainment</th>
+                            <th width="110px" class="text-center" style="color: white">Bill</th>
+                            <th width="110px" class="text-center" style="color: white">Charity</th>
+                            <th width="110px" class="text-center" style="color: white">Other</th>
+                            <th width="110px" class="text-center" style="color: white">Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,13 +125,13 @@
                 <table>
                     <thead>
                         <tr class="active" style="background-color:#ebb43f !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
-                            <th width="100px" class="text-center" style="color: white">Food</th>
-                            <th width="100px" class="text-center" style="color: white">Salary</th>
-                            <th width="100px" class="text-center" style="color: white">Entertainment</th>
-                            <th width="100px" class="text-center" style="color: white">Bill</th>
-                            <th width="100px" class="text-center" style="color: white">Charity</th>
-                            <th width="100px" class="text-center" style="color: white">Other</th>
-                            <th width="100px" class="text-center" style="color: white">Total</th>
+                            <th width="110px" class="text-center" style="color: white">Food</th>
+                            <th width="110px" class="text-center" style="color: white">Salary</th>
+                            <th width="110px" class="text-center" style="color: white">Entertainment</th>
+                            <th width="110px" class="text-center" style="color: white">Bill</th>
+                            <th width="110px" class="text-center" style="color: white">Charity</th>
+                            <th width="110px" class="text-center" style="color: white">Other</th>
+                            <th width="110px" class="text-center" style="color: white">Total</th>
                         </tr>
                     </thead>
                     <tbody>
