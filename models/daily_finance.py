@@ -4,7 +4,7 @@ from datetime import datetime
 class DailyFinance(models.Model):
     _name = 'daily.finance'
 
-    partner_id = fields.Many2one('res.partner', required=True)
+    partner_id = fields.Many2one('res.partner', required=True, default=lambda self: self.env.user.partner_id)
     type = fields.Selection([
         ('income', 'Income'),
         ('outcome', 'Outcome')

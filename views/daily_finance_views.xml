@@ -24,7 +24,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="partner_id"/>
+                            <field name="partner_id" required="1" attrs="{'readonly':True}"/>
                             <field name="type"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
@@ -36,6 +36,18 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_daily_finance_readonly" model="ir.ui.view">
+        <field name="name">daily finance</field>
+        <field name="model">daily.finance</field>
+        <field name="inherit_id" ref="daily_finance.daily_finance_form_view" />
+        <field name="groups_id" eval="[(6, 0, [ref('daily_finance.group_daily_finance_manager')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
         </field>
     </record>
 
