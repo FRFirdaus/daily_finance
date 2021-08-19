@@ -47,7 +47,7 @@
                         <h2 style="color: white !important;"><b>FINANCE REPORT DOCUMENT</b></h2>
                     </div>
                     <div class="col-4 text-right">
-                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:50pt;max-width:100%;margin-right:65px;"/>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:50pt;max-width:100%;margin-right:20px;"/>
                     </div>
                 </div>
                 
@@ -172,13 +172,15 @@
                             <tr>
                                 <td><strong>Sub Total Balance:</strong></td>
                                 <td class="text-right">
-                                    <span class="m-0" t-value="'Rp ' + str(doc.sub_total)"/>
+                                    <t t-set="sub_total_view" t-value="'Rp ' + str(doc.sub_total)"/>
+                                    <p class="m-0" t-esc="sub_total_view"/>
                                 </td>
                             </tr>
                             <tr class="border-black o_subtotal" style="">
                                 <td style="background-color:#ebb43f !important;color:#FFF !important;"><strong style="color:#FFF">Total Balance:</strong></td>
                                 <td class="text-right" style="background-color:#ebb43f !important;color:#FFF !important;">
-                                    <span t-value="'Rp ' + str(doc.total_balance)"/>
+                                    <t t-set="total_view" t-value="'Rp ' + str(doc.total_balance)"/>
+                                    <p class="m-0" t-esc="total_view"/>
                                 </td>
                             </tr>
                         </table>
