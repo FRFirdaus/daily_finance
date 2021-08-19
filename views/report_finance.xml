@@ -43,11 +43,11 @@
         <t t-call="web.external_layout_background">
             <div style="background-color:#ebb43f !important;border: 2px !important; border-radius: 5px !important; padding: 15px 15px 0px 15px !important; color: white !important;">
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-8">
                         <h2 style="color: white !important;"><b>FINANCE REPORT DOCUMENT</b></h2>
                     </div>
-                    <div class="col-5">
-                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:50pt;max-width:100%;margin-right:65px;" class="pull-right mb16"/>
+                    <div class="col-4">
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:50pt;max-width:100%;margin-right:65px;" class="pull-right"/>
                     </div>
                 </div>
                 
@@ -85,6 +85,7 @@
                             <th width="100px" class="text-center" style="color: white">Salary</th>
                             <th width="100px" class="text-center" style="color: white">Entertainment</th>
                             <th width="100px" class="text-center" style="color: white">Bill</th>
+                            <th width="100px" class="text-center" style="color: white">Charity</th>
                             <th width="100px" class="text-center" style="color: white">Other</th>
                             <th width="100px" class="text-center" style="color: white">Total</th>
                         </tr>
@@ -103,6 +104,9 @@
                                 </td>
                                 <td class="text-right">
                                     <span t-field="print_line.bill"/> 
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="print_line.charity"/> 
                                 </td>
                                 <td class="text-right">
                                     <span t-field="print_line.other"/> 
@@ -125,6 +129,7 @@
                             <th width="100px" class="text-center" style="color: white">Salary</th>
                             <th width="100px" class="text-center" style="color: white">Entertainment</th>
                             <th width="100px" class="text-center" style="color: white">Bill</th>
+                            <th width="100px" class="text-center" style="color: white">Charity</th>
                             <th width="100px" class="text-center" style="color: white">Other</th>
                             <th width="100px" class="text-center" style="color: white">Total</th>
                         </tr>
@@ -143,6 +148,9 @@
                                 </td>
                                 <td class="text-right">
                                     <span t-field="print_line.bill"/> 
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="print_line.charity"/> 
                                 </td>
                                 <td class="text-right">
                                     <span t-field="print_line.other"/> 
@@ -169,7 +177,7 @@
                             </tr>
                             <tr class="border-black o_subtotal" style="">
                                 <td style="background-color:#ebb43f !important;color:#FFF !important;"><strong style="color:#FFF">Total Balance:</strong></td>
-                                <td class="text-right" style="background-color:#893b74 !important;color:#FFF !important;">
+                                <td class="text-right" style="background-color:#ebb43f !important;color:#FFF !important;">
                                     <span t-field="doc.total_balance"/>
                                 </td>
                             </tr>

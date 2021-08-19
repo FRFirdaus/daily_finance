@@ -38,6 +38,7 @@
                             <field name="salary"/>
                             <field name="entertain"/>
                             <field name="bill"/>
+                            <field name="charity"/>
                             <field name="other"/>
                             <field name="total"/>
                         </tree>
