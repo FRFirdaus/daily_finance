@@ -7,6 +7,7 @@ class FinanceReport(models.Model):
     start_date = fields.Date()
     end_date = fields.Date()
     report_line_ids = fields.One2many('finance.report.line', 'finance_report_id')
+    sub_total = fields.Float(digits = (12,2), readonly=True)
     total_balance = fields.Float(digits = (12,2), readonly=True)
 
     def _get_report_base_filename(self):
@@ -25,7 +26,7 @@ class FinanceReport(models.Model):
 class FinanceReportLine(models.Model):
     _name = 'finance.report.line'
 
-    finance_report_id = fields.Many2one('finance.report')
+    finance_report_id = fields.Many2one('finance.report', ondelete="cascade")
     type = fields.Selection([
         ('income', 'Income'),
         ('outcome', 'Outcome')

@@ -9,6 +9,41 @@
     <record id="group_daily_finance_user" model="res.groups">
         <field name="name">User</field>
         <field name="category_id" ref="daily_finance_groups"/>
-        <field name="comment">The user will have access to Daily Finance.</field>
+        <field name="comment">The user will have access user to Daily Finance.</field>
     </record>
+
+    <record id="group_daily_finance_manager" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="daily_finance_groups"/>
+        <field name="comment">The user will have access Manager/Admin to Daily Finance.</field>
+    </record>
+
+    <!-- Access Rules -->
+    <record id="filter_daily_finance_by_current_user" model="ir.rule">
+        <field name="name">Group staff member: can modify only resources by their own data</field>
+        <field name="model_id" ref="model_daily_finance"/>
+        <field name="groups" eval="[(4, ref('group_daily_finance_user'))]"/>
+        <field name="domain_force">[('partner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- <record id="filter_daily_finance_by_admin" model="ir.rule">
+        <field name="name">Group Admin member: can modify only resources by their own data</field>
+        <field name="model_id" ref="model_daily_finance"/>
+        <field name="groups" eval="[(4, ref('group_daily_finance_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record> -->
+
+    <record id="filter_finance_report_by_current_user" model="ir.rule">
+        <field name="name">Group staff member: can modify only resources by their own data</field>
+        <field name="model_id" ref="model_finance_report"/>
+        <field name="groups" eval="[(4, ref('group_daily_finance_user'))]"/>
+        <field name="domain_force">[('partner_id', '=', user.partner_id.id)]</field>
+    </record>
+
+    <!-- <record id="filter_finance_report_by_admin" model="ir.rule">
+        <field name="name">Group Admin member: can modify only resources by their own data</field>
+        <field name="model_id" ref="model_finance_report"/>
+        <field name="groups" eval="[(4, ref('group_daily_finance_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record> -->
 </odoo>

@@ -66,10 +66,12 @@
                 </div>
             </div>
             <div class="text-justify">
+                <h3>
+                    INCOME
+                </h3>
                 <table>
                     <thead>
                         <tr class="active" style="background-color:#893b74 !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
-                            <th width="200px" class="text-center" style="color: white">Type Move</th>
                             <th width="100px" class="text-center" style="color: white">Food</th>
                             <th width="100px" class="text-center" style="color: white">Salary</th>
                             <th width="100px" class="text-center" style="color: white">Entertainment</th>
@@ -79,11 +81,47 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-foreach="doc.report_line_ids" t-as="print_line">
+                        <t t-foreach="doc.report_line_ids.filtered(lambda x: x.type == 'income')" t-as="print_line">
                             <tr>
-                                <td>                            
-                                    <span t-field="print_line.type"/> 
+                                <td class="text-right">
+                                    <span t-field="print_line.food"/> 
                                 </td>
+                                <td class="text-right">
+                                    <span t-field="print_line.salary"/> 
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="print_line.entertain"/> 
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="print_line.bill"/> 
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="print_line.other"/> 
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="print_line.total"/> 
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <h3>
+                    OUTCOME
+                </h3>
+                <table>
+                    <thead>
+                        <tr class="active" style="background-color:#893b74 !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
+                            <th width="100px" class="text-center" style="color: white">Food</th>
+                            <th width="100px" class="text-center" style="color: white">Salary</th>
+                            <th width="100px" class="text-center" style="color: white">Entertainment</th>
+                            <th width="100px" class="text-center" style="color: white">Bill</th>
+                            <th width="100px" class="text-center" style="color: white">Other</th>
+                            <th width="100px" class="text-center" style="color: white">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.report_line_ids.filtered(lambda x: x.type == 'outcome')" t-as="print_line">
+                            <tr>
                                 <td class="text-right">
                                     <span t-field="print_line.food"/> 
                                 </td>
@@ -109,13 +147,17 @@
             </div>
             <div class="clearfix">
                 <div class="row">
+                    <div class="col-7">
+                        <div>
+                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 1000, 1000)" style="max-height:100pt;max-width:100%;margin-right:65px;"/>
+                        </div>
+                    </div>
                     <div class="col-5">
                         <table class="table table-sm;page-break-inside: avoid;">
                             <tr>
                                 <td><strong>Sub Total Balance:</strong></td>
                                 <td class="text-right">
-                                    <t t-set="total_subject" t-value="round(sum(data.total for data in doc.report_line_ids.filtered(lambda x: x.type == 'income')) - sum(data.total for data in doc.report_line_ids.filtered(lambda x: x.type == 'outcome')), 3)"/>
-                                    <p class="m-0" t-esc="total_subject"/>
+                                    <span class="m-0" t-field="doc.sub_total"/>
                                 </td>
                             </tr>
                             <tr class="border-black o_subtotal" style="">

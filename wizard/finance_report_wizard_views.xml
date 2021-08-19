@@ -7,7 +7,7 @@
             <form>
                 <group>
                     <group>
-                        <field name="partner_id" required="1"/>
+                        <field name="partner_id" required="1" attrs="{'readonly':True}"/>
                         <field name="select_all"/>
                     </group>
                     <group>
@@ -20,6 +20,18 @@
                     <button string="Cancel" class="btn-default" special="cancel"/>   
                 </footer>
             </form>
+        </field>
+    </record>
+
+    <record id="view_report_readonly" model="ir.ui.view">
+        <field name="name">Print Raport wizard</field>
+        <field name="model">finance.report.wizard</field>
+        <field name="inherit_id" ref="daily_finance.finance_report_form_wizard" />
+        <field name="groups_id" eval="[(6, 0, [ref('daily_finance.group_daily_finance_manager')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
         </field>
     </record>
 

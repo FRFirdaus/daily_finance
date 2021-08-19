@@ -11,25 +11,130 @@ class DailyFinanceRequest(http.Controller):
     def twilio_whatsapp_message(self):
         body = request.params.get('Body')
         body_split = body.split(" ")
+        from_whatsapp_number = request.params.get('From').replace("whatsapp:", "")
         msg = ""
-
+        
         if body == "!help":
             msg = self.message_rules()
             return self.response_message_whatsapp(msg)
 
-        if body_split[0] not in ['set', 'get']:
-            msg = "```Please define your purpose in 'set' or 'get'.```"
+        if body_split[0] not in ['set', 'get', 'create', 'delete']:
+            msg = "```Please define your purpose in 'set', 'get', 'create', 'delete'.```"
             return self.response_message_whatsapp(msg)
+
+        if body_split[0] in ['set', 'get']:
+            get_partner = request.env['res.partner'].sudo().search([('ref', '=', body_split[1])])
+            if not get_partner:
+                msg = "```User is not exist.```"
+                return self.response_message_whatsapp(msg)
+
+            if from_whatsapp_number != get_partner.mobile:
+                msg = "```Wrong user, the sender message must have same mobile number as user mobile number.```"
+                return self.response_message_whatsapp(msg)
+            
+            if body_split[0] == 'set':
+                return self.create_data(get_partner, body_split)
+            elif body_split[0] == 'get':
+                return self.get_data(get_partner, body_split)
+
+        if body_split[0] in ['create', 'delete']:
+            if body_split[0] == 'create':
+                return self.create_new_user(body_split, from_whatsapp_number)
+            elif body_split[0] == 'delete':
+                return self.delete_user(body_split)
+
+    def delete_user(self, body_split):
+        if len(body_split) != 4:
+            msg = "```Wrong format delete user, the sender message must send with this format: 'delete user <id_name> <password>'.```"
+            return self.response_message_whatsapp(msg)
+
+        user_id = request.env['res.users'].sudo().search([
+            ('login', '=', body_split[2]),
+            ('active', '=', True)
+        ])
+        if not user_id:
+            msg = "```User is not exist.```"
+            return self.response_message_whatsapp(msg)
+
+        if user_id.partner_id.password_user != body_split[3]:
+            msg = "```Wrong password.```"
+            return self.response_message_whatsapp(msg)
+
+        daily_finance_ids = request.env['daily.finance'].sudo().search([('partner_id', '=', user_id.partner_id.id)])
+        for df in daily_finance_ids:
+            df.unlink()
+
+        report_finance_ids = request.env['finance.report'].sudo().search([('partner_id', '=', user_id.partner_id.id)])
+        for rf in report_finance_ids:
+            rf.unlink()
+
+        user_id.active = False
+
+        msg = "```Success archive user %s you can't no longer login into our system and all of your data will be deleted.```" % (user_id.login)
+        return self.response_message_whatsapp(msg)
+
+    def create_new_user(self, body_split, from_whatsapp_number):
+        if len(body_split) != 5:
+            msg = "```Wrong format create user, the sender message must send with this format: 'create user <id_name> <your_name> <password>'.```"
+            return self.response_message_whatsapp(msg)
+
+        existing_user_id = request.env['res.users'].sudo().search([('login', '=', body_split[2]), ('active', 'in', [False, True])])
+        if existing_user_id:
+            msg = "```%s as ID name already used.```" % (body_split[2])
+            return self.response_message_whatsapp(msg)
+
+        if existing_user_id:
+            msg = "```%s as ID name already used.```" % (body_split[2])
+            return self.response_message_whatsapp(msg)
+
+        max_account = request.env['ir.config_parameter'].sudo().get_param('df.maximal_user')
+        if not max_account:
+            msg = "```Failed to create user, max account per phone number is not set on the system.```" % (body_split[2])
+            return self.response_message_whatsapp(msg)
+
+        total_user_by_phone = request.env['res.partner'].sudo().search([('mobile', '=', from_whatsapp_number)])
+        if len(total_user_by_phone) > int(max_account) :
+            msg = "```One number (%s) only can have %s users.```" % (from_whatsapp_number, max_account)
+            return self.response_message_whatsapp(msg)
+
+        user_id = request.env['res.users'].sudo().create({
+            'name': body_split[3].replace("_", " "),
+            'login': body_split[2],
+            'password': body_split[4]
+        })
+
+        add_group_access = request.env.ref('daily_finance.group_daily_finance_user').sudo().write({
+            'users': [(4, user_id.id)]
+        })
+
+        user_id.partner_id.write({
+            'mobile': from_whatsapp_number,
+            'ref': body_split[2],
+            'password_user': body_split[4]
+        })
         
-        if body_split[0] == 'set':
-            return self.create_data(body_split)
-        elif body_split[0] == 'get':
-            return self.get_data(body_split)
+        msg = "```Success create new user, login: %s | password: %s```" % (user_id.login, body_split[4])
+        return self.response_message_whatsapp(msg)
 
     def message_rules(self):
         result = "Rules: " \
-        "\n*Set*" \
-        "\nvalue of <name> is your user name in the system" \
+        "\n*CREATE*" \
+        "\nvalue of <id_name> is your username/id_login in the system" \
+        "\nvalue of <name> is your complete name, fill it like email no space" \
+        "\nvalue of <password> is your user password" \
+        "\n*Format message:*" \
+        "\ncreate user <id_name> <name> <password>" \
+        "\nexample: " \
+        "\n*create user rehan123 Fahmi_Roihanul_Firdaus passwordku123*\n" \
+        "\n*DELETE*" \
+        "\nvalue of <id_name> is your username/id_login in the system" \
+        "\nvalue of <password> is your user password" \
+        "\n*Format message:*" \
+        "\ndelete user <id_name> <password>" \
+        "\nexample: " \
+        "\n*delete user rehan123 passwordku123*\n" \
+        "\n*SET*" \
+        "\nvalue of <id_name> is your username/id_login in the system" \
         "\nvalue of <type> is 'income' or 'outcome'" \
         "\nvalue of <total_amount> is nominal of your amount example: 2.000.000" \
         "\nvalue of <usage> is ['food', 'salary', 'entertain', 'bill', 'other']" \
@@ -39,33 +144,29 @@ class DailyFinanceRequest(http.Controller):
         "\nOR" \
         "\nset <name> <type> <total_amount> <usage> <date>" \
         "\nexample: " \
-        "\n*set Rehan income 15.000.000 salary*" \
+        "\n*set rehan1 income 100.000.000 salary*" \
         "\nOR" \
-        "\n*set Rehan income 15.000.000 salary 2021-08-17*\n" \
-        "\n*Get*" \
-        "\nvalue of <name> is your user name in the system" \
+        "\n*set rehan1 income 100.000.000 salary 2021-08-17*\n" \
+        "\n*GET*" \
+        "\nvalue of <id_name> is your username/id login in the system" \
         "\nvalue of <date_start> is in format 'YYYY-mm-dd'" \
         "\nvalue of <date_end> is in format 'YYYY-mm-dd'" \
         "\n*Format message:*" \
         "\nget <name> report <date_start> <date_end>" \
         "\nOR" \
-        "\nget <name> report all>" \
+        "\nget <id_name> report all>" \
         "\nexample: " \
-        "\n*get Rehan report 2021-08-17 2021-09-17*" \
+        "\n*get rehan1 report 2021-08-17 2021-09-17*" \
         "\nOR" \
-        "\n*get Rehan report all*"
+        "\n*get rehan1 report all*"
 
         return result
 
-    def get_data(self, body_split):
+    def get_data(self, get_partner, body_split):
         all_total_income = 0
         all_total_outcome = 0
         total_income = 0
         total_outcome = 0
-        get_partner = request.env['res.partner'].sudo().search([('name', '=', body_split[1])])
-        if not get_partner:
-            msg = "```User is not exist.```"
-            return self.response_message_whatsapp(msg)
 
         if len(body_split) not in [5, 4]:
             msg = self.common_msg
@@ -200,7 +301,8 @@ class DailyFinanceRequest(http.Controller):
         report_ref = 'daily_finance.finance_pdf_report'
         raport_pdf_name = "Report_Finance_%s" % (finance_report_id.partner_id.name)
         return "%s/api/v1/%s/%s/%s" % (
-            base_url, 
+            # base_url, 
+            "https://46a49af89f3f.ngrok.io",
             report_ref, 
             report_id, 
             raport_pdf_name
@@ -216,19 +318,9 @@ class DailyFinanceRequest(http.Controller):
         pdfhttpheaders = [('Content-Type', 'application/pdf'), ('Content-Length', u'%s' % len(pdf))]
         return request.make_response(pdf, headers=pdfhttpheaders)
         
-    def create_data(self, body_split):
+    def create_data(self, get_partner, body_split):
         if len(body_split) not in [5, 6]:
             msg = self.common_msg
-            return self.response_message_whatsapp(msg)
-
-        get_partner = request.env['res.partner'].sudo().search([('name', '=', body_split[1])])
-        if not get_partner:
-            msg = "```User is not exist.```"
-            return self.response_message_whatsapp(msg)
-        
-        from_whatsapp_number = request.params.get('From').replace("whatsapp:", "")
-        if from_whatsapp_number != get_partner.mobile:
-            msg = "```Wrong user, the sender message must have same mobile number as user mobile number.```"
             return self.response_message_whatsapp(msg)
             
         if body_split[2] not in ['income', 'outcome']:

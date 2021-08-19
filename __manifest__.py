@@ -24,5 +24,6 @@
         'views/report.xml',
         'wizard/finance_report_wizard_views.xml',
         'views/finance_menu.xml',
+        'views/res_partner_views.xml',
     ]
 }

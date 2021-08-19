@@ -9,6 +9,7 @@
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="create_date"/>
+                <field name="sub_total"/>
             </tree>
         </field>
     </record>
@@ -42,6 +43,7 @@
                         </tree>
                     </field>
                     <group class="oe_subtotal_footer oe_right">
+                        <field name="sub_total"/>
                         <field name="total_balance"/>
                     </group>
                 </sheet>

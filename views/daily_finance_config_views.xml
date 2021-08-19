@@ -15,11 +15,13 @@
                                     <div class="content-group">
                                         <div class="mt16 row">
                                             <label for="finance_account_sid" string="Twilio Account SID" class="col-xs-3 col-md-3 o_light_label o_form_label"/>
-                                            <field name="finance_account_sid" class="font-weight-bold"/>
+                                            <field name="finance_account_sid" password="1" class="font-weight-bold"/>
                                             <label for="finance_auth_token" string="Twilio Auth Token" class="col-xs-3 col-md-3 o_light_label o_form_label"/>
-                                            <field name="finance_auth_token" class="font-weight-bold"/>
+                                            <field name="finance_auth_token" password="1" class="font-weight-bold"/>
                                             <label for="finance_mobile" string="Twilio Mobile" class="col-xs-3 col-md-3 o_light_label o_form_label"/>
                                             <field name="finance_mobile" class="font-weight-bold"/>
+                                            <label for="maximal_user" string="Maximal User per Phone" class="col-xs-3 col-md-3 o_light_label o_form_label"/>
+                                            <field name="maximal_user" class="font-weight-bold"/>
                                         </div>
                                     </div>
                                 </div>

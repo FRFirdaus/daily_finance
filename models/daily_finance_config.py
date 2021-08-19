@@ -18,3 +18,9 @@ class DailyFinanceSettings(models.TransientModel):
         config_parameter='twilio.mobile_finance',
         default="+14155238886"
     )
+
+    maximal_user = fields.Integer(
+        string='Maximal User per Phone Number',
+        config_parameter='df.maximal_user',
+        default=3
+    )

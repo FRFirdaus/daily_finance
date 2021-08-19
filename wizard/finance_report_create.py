@@ -3,7 +3,7 @@ from odoo import fields, models, api, _
 class FinanceReportWizard(models.TransientModel):
     _name = 'finance.report.wizard'
 
-    partner_id = fields.Many2one('res.partner')
+    partner_id = fields.Many2one('res.partner', default=lambda self: self.env.user.partner_id)
     select_all = fields.Boolean()
     start_date = fields.Date()
     end_date = fields.Date()
@@ -48,11 +48,16 @@ class FinanceReportWizard(models.TransientModel):
             all_datas = self.env['daily.finance'].search([('partner_id', '=', self.partner_id.id)])
             total_outcome = sum(df.total for df in all_datas.filtered(lambda x: x.type == 'outcome'))
             total_income = sum(df.total for df in all_datas.filtered(lambda x: x.type == 'income'))
+
+            sub_total = sum(data.total for data in daily_finance_ids.filtered(lambda x: x.type == 'income')) - \
+                sum(data.total for data in daily_finance_ids.filtered(lambda x: x.type == 'outcome'))
+
             create_finance_report = self.env['finance.report'].create({
                 'partner_id': self.partner_id.id,
                 'start_date': self.start_date,
                 'end_date': self.end_date,
                 'report_line_ids': report_lines,
+                'sub_total': sub_total,
                 'total_balance': total_income - total_outcome
             })
 

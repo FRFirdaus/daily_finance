@@ -39,9 +39,21 @@
         </field>
     </record>
 
+    <record id="daily_finance_graph_view" model="ir.ui.view">
+        <field name="name">daily_finance_graph_view</field>
+        <field name="model">daily.finance</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="type" type="row"/>
+                <field name="usage" type="col"/>
+                <field name="total" type="measure" operator="+"/>
+            </graph>
+        </field>
+    </record>
+
     <record id="daily_finance_action" model="ir.actions.act_window">
         <field name="name">Daily Finance</field>
         <field name="res_model">daily.finance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,graph</field>
     </record>
 </odoo>
