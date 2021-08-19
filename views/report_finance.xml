@@ -12,7 +12,7 @@
                 <div class="col-8">
                     <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="max-height: 50px;" />
                 </div>
-                <div class="col-4 text-right" style="background-color:#893b74 !important;border: 2px !important; border-radius: 5px !important; padding: 10px 10px 10px 0px !important; margin-left: -10px; border-style: solid !important; border-color: #fff; color:#fff !important; font:12px lucida-console,sans-serif !important;">
+                <div class="col-4 text-right" style="background-color:#ebb43f !important;border: 2px !important; border-radius: 5px !important; padding: 10px 10px 10px 0px !important; margin-left: -10px; border-style: solid !important; border-color: #fff; color:#fff !important; font:12px lucida-console,sans-serif !important;">
                     <div t-if="company.partner_id">
                       <span t-field="company.partner_id"/>
                       <br/>
@@ -41,8 +41,16 @@
             </div>
         </div>
         <t t-call="web.external_layout_background">
-            <div style="background-color:#893b74 !important;border: 2px !important; border-radius: 5px !important; padding: 15px 15px 0px 15px !important; color: white !important;">
-                <h2 style="color: white !important;"><b>FINANCE REPORT DOCUMENT</b></h2>
+            <div style="background-color:#ebb43f !important;border: 2px !important; border-radius: 5px !important; padding: 15px 15px 0px 15px !important; color: white !important;">
+                <div class="row">
+                    <div class="col-7">
+                        <h2 style="color: white !important;"><b>FINANCE REPORT DOCUMENT</b></h2>
+                    </div>
+                    <div class="col-5">
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:50pt;max-width:100%;margin-right:65px;" class="pull-right mb16"/>
+                    </div>
+                </div>
+                
                 <h3>
                     <span t-field="doc.partner_id.name"/>
                 </h3>
@@ -66,12 +74,13 @@
                 </div>
             </div>
             <div class="text-justify">
+                <br/>
                 <h3>
                     INCOME
                 </h3>
                 <table>
                     <thead>
-                        <tr class="active" style="background-color:#893b74 !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
+                        <tr class="active" style="background-color:#ebb43f !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
                             <th width="100px" class="text-center" style="color: white">Food</th>
                             <th width="100px" class="text-center" style="color: white">Salary</th>
                             <th width="100px" class="text-center" style="color: white">Entertainment</th>
@@ -105,12 +114,13 @@
                         </t>
                     </tbody>
                 </table>
+                <br/>
                 <h3>
                     OUTCOME
                 </h3>
                 <table>
                     <thead>
-                        <tr class="active" style="background-color:#893b74 !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
+                        <tr class="active" style="background-color:#ebb43f !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
                             <th width="100px" class="text-center" style="color: white">Food</th>
                             <th width="100px" class="text-center" style="color: white">Salary</th>
                             <th width="100px" class="text-center" style="color: white">Entertainment</th>
@@ -148,9 +158,6 @@
             <div class="clearfix">
                 <div class="row">
                     <div class="col-7">
-                        <div>
-                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 1000, 1000)" style="max-height:100pt;max-width:100%;margin-right:65px;"/>
-                        </div>
                     </div>
                     <div class="col-5">
                         <table class="table table-sm;page-break-inside: avoid;">
@@ -161,7 +168,7 @@
                                 </td>
                             </tr>
                             <tr class="border-black o_subtotal" style="">
-                                <td style="background-color:#893b74 !important;color:#FFF !important;"><strong style="color:#FFF">Total Balance:</strong></td>
+                                <td style="background-color:#ebb43f !important;color:#FFF !important;"><strong style="color:#FFF">Total Balance:</strong></td>
                                 <td class="text-right" style="background-color:#893b74 !important;color:#FFF !important;">
                                     <span t-field="doc.total_balance"/>
                                 </td>

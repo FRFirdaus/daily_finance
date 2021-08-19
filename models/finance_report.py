@@ -36,6 +36,7 @@ class FinanceReportLine(models.Model):
     salary = fields.Char()
     entertain = fields.Char()
     bill = fields.Char()
+    charity = fields.Char()
     other = fields.Char()
 
     total = fields.Float()

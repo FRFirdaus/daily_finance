@@ -16,6 +16,7 @@ class DailyFinance(models.Model):
         ('salary', 'Salary'),
         ('entertain', 'Entertainment'),
         ('bill', 'Monthly Bill'),
+        ('charity', 'Charity'),
         ('other', 'Other')
     ])
 

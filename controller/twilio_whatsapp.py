@@ -332,8 +332,8 @@ class DailyFinanceRequest(http.Controller):
             msg = "```Wrong amount format, %s```" % (e)
             return self.response_message_whatsapp(msg)
             
-        if body_split[4] not in ['food', 'salary', 'entertain', 'bill', 'other']:
-            msg = "```Wrong usage type, must in 'food', 'salary', 'entertain', 'bill', 'other'.```"
+        if body_split[4] not in ['food', 'salary', 'entertain', 'bill', 'charity', 'other']:
+            msg = "```Wrong usage type, must in 'food', 'salary', 'entertain', 'bill', 'charity' 'other'.```"
             return self.response_message_whatsapp(msg)
 
         res = {

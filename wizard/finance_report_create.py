@@ -23,7 +23,7 @@ class FinanceReportWizard(models.TransientModel):
             report_lines = []
             finance_type = ['income', 'outcome']
             for ft in finance_type:
-                list_usage = ['food', 'salary', 'entertain', 'bill', 'other']
+                list_usage = ['food', 'salary', 'entertain', 'bill', 'charity', 'other']
                 usage_info = {}
                 for usage in list_usage:
                     filter_by_usage = daily_finance_ids.filtered(lambda x: x.type == ft and x.usage == usage)
@@ -41,6 +41,7 @@ class FinanceReportWizard(models.TransientModel):
                     'salary': usage_info['salary'],
                     'entertain': usage_info['entertain'],
                     'bill': usage_info['bill'],
+                    'charity': usage_info['charity'],
                     'other': usage_info['other'],
                     'total': total_type
                 }))
