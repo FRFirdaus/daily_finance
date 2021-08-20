@@ -73,13 +73,80 @@
                     </div>
                 </div>
             </div>
-                <br/>
-            <div class="row">
+            <br/>
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-6">
+                        <table>
+                            <tr>
+                                <td width="120px">
+                                    <strong>INCOME</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="120px">
+                                    <strong>Food</strong>
+                                </td>
+                                <td class="text-right" width="360px">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').food"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="120px">
+                                    <strong>Salary</strong>
+                                </td>
+                                <td class="text-right" width="360px">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').salary"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="120px">
+                                    <strong>Entertainment</strong>
+                                </td>
+                                <td class="text-right" width="360px">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').entertain"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="120px">
+                                    <strong>Bill</strong>
+                                </td>
+                                <td class="text-right" width="360px">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').bill"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="120px">
+                                    <strong>Charity</strong>
+                                </td>
+                                <td class="text-right" width="360px">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').charity"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="120px">
+                                    <strong>Other</strong>
+                                </td>
+                                <td class="text-right" width="360px">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').other"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="120px">
+                                    <strong>Total</strong>
+                                </td>
+                                <td class="text-right" width="360px">
+                                    Rp <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').total"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
                 <div class="col-6">
                     <table>
                         <tr>
                             <td width="120px">
-                                <strong>INCOME</strong>
+                                <strong>OUTCOME</strong>
                             </td>
                         </tr>
                         <tr>
@@ -87,7 +154,7 @@
                                 <strong>Food</strong>
                             </td>
                             <td class="text-right" width="360px">
-                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').food"/>
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').food"/>
                             </td>
                         </tr>
                         <tr>
@@ -95,7 +162,7 @@
                                 <strong>Salary</strong>
                             </td>
                             <td class="text-right" width="360px">
-                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').salary"/>
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').salary"/>
                             </td>
                         </tr>
                         <tr>
@@ -103,7 +170,7 @@
                                 <strong>Entertainment</strong>
                             </td>
                             <td class="text-right" width="360px">
-                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').entertain"/>
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').entertain"/>
                             </td>
                         </tr>
                         <tr>
@@ -111,7 +178,7 @@
                                 <strong>Bill</strong>
                             </td>
                             <td class="text-right" width="360px">
-                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').bill"/>
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').bill"/>
                             </td>
                         </tr>
                         <tr>
@@ -119,7 +186,7 @@
                                 <strong>Charity</strong>
                             </td>
                             <td class="text-right" width="360px">
-                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').charity"/>
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').charity"/>
                             </td>
                         </tr>
                         <tr>
@@ -127,7 +194,7 @@
                                 <strong>Other</strong>
                             </td>
                             <td class="text-right" width="360px">
-                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').other"/>
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').other"/>
                             </td>
                         </tr>
                         <tr>
@@ -135,76 +202,11 @@
                                 <strong>Total</strong>
                             </td>
                             <td class="text-right" width="360px">
-                                Rp <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').total"/>
+                                Rp <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').total"/>
                             </td>
                         </tr>
                     </table>
                 </div>
-            </div>
-            <div class="col-6">
-                <table>
-                    <tr>
-                        <td width="120px">
-                            <strong>OUTCOME</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="120px">
-                            <strong>Food</strong>
-                        </td>
-                        <td class="text-right" width="360px">
-                            <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').food"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="120px">
-                            <strong>Salary</strong>
-                        </td>
-                        <td class="text-right" width="360px">
-                            <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').salary"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="120px">
-                            <strong>Entertainment</strong>
-                        </td>
-                        <td class="text-right" width="360px">
-                            <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').entertain"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="120px">
-                            <strong>Bill</strong>
-                        </td>
-                        <td class="text-right" width="360px">
-                            <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').bill"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="120px">
-                            <strong>Charity</strong>
-                        </td>
-                        <td class="text-right" width="360px">
-                            <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').charity"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="120px">
-                            <strong>Other</strong>
-                        </td>
-                        <td class="text-right" width="360px">
-                            <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').other"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="120px">
-                            <strong>Total</strong>
-                        </td>
-                        <td class="text-right" width="360px">
-                            Rp <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').total"/>
-                        </td>
-                    </tr>
-                </table>
             </div>
             <div class="clearfix">
                 <div class="row">
