@@ -75,11 +75,13 @@
             </div>
                 <br/>
             <div class="row">
-                <div class="col-5">
-                    <h3>
-                        INCOME
-                    </h3>
+                <div class="col-6">
                     <table>
+                        <tr>
+                            <td width="120px">
+                                <strong>INCOME</strong>
+                            </td>
+                        </tr>
                         <tr>
                             <td width="120px">
                                 <strong>Food</strong>
@@ -139,11 +141,13 @@
                     </table>
                 </div>
             </div>
-            <div class="col-5">
-                <h3>
-                    OUTCOME
-                </h3>
+            <div class="col-6">
                 <table>
+                    <tr>
+                        <td width="120px">
+                            <strong>OUTCOME</strong>
+                        </td>
+                    </tr>
                     <tr>
                         <td width="120px">
                             <strong>Food</strong>
