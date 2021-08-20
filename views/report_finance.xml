@@ -75,93 +75,136 @@
             </div>
             <div class="text-justify">
                 <br/>
-                <h3>
-                    INCOME
-                </h3>
-                <table>
-                    <thead>
-                        <tr class="active" style="background-color:#ebb43f !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
-                            <th width="115px" class="text-center" style="color: white">Food</th>
-                            <th width="115px" class="text-center" style="color: white">Salary</th>
-                            <th width="115px" class="text-center" style="color: white">Entertainment</th>
-                            <th width="115px" class="text-center" style="color: white">Bill</th>
-                            <th width="115px" class="text-center" style="color: white">Charity</th>
-                            <th width="115px" class="text-center" style="color: white">Other</th>
-                            <th width="115px" class="text-center" style="color: white">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="doc.report_line_ids.filtered(lambda x: x.type == 'income')" t-as="print_line">
+                <div class="row">
+                    <div class="col-6">
+                        <h3>
+                            INCOME
+                        </h3>
+                        <table>
                             <tr>
-                                <td class="text-right">
-                                    <span t-field="print_line.food"/> 
+                                <td width="360px">
+                                   <strong>Food</strong>
                                 </td>
                                 <td class="text-right">
-                                    <span t-field="print_line.salary"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.entertain"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.bill"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.charity"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.other"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.total"/> 
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').food"/>
                                 </td>
                             </tr>
-                        </t>
-                    </tbody>
-                </table>
-                <br/>
-                <h3>
-                    OUTCOME
-                </h3>
-                <table>
-                    <thead>
-                        <tr class="active" style="background-color:#ebb43f !important;border: 1px !important; border-style: solid !important; border-color: #fff; color:#fff !important;">
-                            <th width="115px" class="text-center" style="color: white">Food</th>
-                            <th width="115px" class="text-center" style="color: white">Salary</th>
-                            <th width="115px" class="text-center" style="color: white">Entertainment</th>
-                            <th width="115px" class="text-center" style="color: white">Bill</th>
-                            <th width="115px" class="text-center" style="color: white">Charity</th>
-                            <th width="115px" class="text-center" style="color: white">Other</th>
-                            <th width="115px" class="text-center" style="color: white">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="doc.report_line_ids.filtered(lambda x: x.type == 'outcome')" t-as="print_line">
                             <tr>
-                                <td class="text-right">
-                                    <span t-field="print_line.food"/> 
+                                <td width="360px">
+                                    <strong>Salary</strong>
                                 </td>
                                 <td class="text-right">
-                                    <span t-field="print_line.salary"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.entertain"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.bill"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.charity"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.other"/> 
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="print_line.total"/> 
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').salary"/>
                                 </td>
                             </tr>
-                        </t>
-                    </tbody>
-                </table>
+                            <tr>
+                                <td width="360px">
+                                    <strong>Entertainment</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').entertain"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="360px">
+                                    <strong>Bill</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').bill"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="360px">
+                                    <strong>Charity</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').charity"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="360px">
+                                    <strong>Other</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').other"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="360px">
+                                    Rp <strong>Total</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'income').total"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h3>
+                        OUTCOME
+                    </h3>
+                    <table>
+                        <tr>
+                            <td width="360px">
+                                <strong>Food</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').food"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="360px">
+                                <strong>Salary</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').salary"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="360px">
+                                <strong>Entertainment</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').entertain"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="360px">
+                                <strong>Bill</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').bill"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="360px">
+                                <strong>Charity</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').charity"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="360px">
+                                <strong>Other</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').other"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="360px">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="text-right">
+                                Rp <span t-field="doc.report_line_ids.filtered(lambda x: x.type == 'outcome').total"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                </div>
             </div>
             <div class="clearfix">
                 <div class="row">
