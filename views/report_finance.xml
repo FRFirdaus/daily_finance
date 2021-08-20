@@ -47,7 +47,7 @@
                         <h2 style="color: white !important;"><b>FINANCE REPORT DOCUMENT</b></h2>
                     </div>
                     <div class="col-4 text-right">
-                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:75pt;max-width:100%;margin-right:10px;"/>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.display_name, 500, 500)" style="max-height:75pt;max-width:100%;margin-right:5px;"/>
                     </div>
                 </div>
                 
@@ -75,7 +75,7 @@
             </div>
                 <br/>
             <div class="row">
-                <div class="col-6">
+                <div class="col-5">
                     <h3>
                         INCOME
                     </h3>
@@ -139,7 +139,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <h3>
                     OUTCOME
                 </h3>
