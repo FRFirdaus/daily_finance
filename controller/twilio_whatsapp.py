@@ -368,8 +368,7 @@ class DailyFinanceRequest(http.Controller):
 		report_ref = 'daily_finance.finance_pdf_report'
 		raport_pdf_name = "Report_Finance_%s" % (finance_report_id.partner_id.name)
 		return "%s/api/v1/%s/%s/%s" % (
-			# base_url, 
-			"https://46a49af89f3f.ngrok.io",
+			base_url, 
 			report_ref, 
 			report_id, 
 			raport_pdf_name
