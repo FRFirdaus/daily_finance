@@ -10,27 +10,27 @@ value of <id_name> is your username/id_login in the system
 value of <name> is your complete name, fill it like email no space
 value of <password> is your user password 
 *Format message:* 
-create user <id_name> <name> <password> 
+!create user <id_name> <name> <password> 
 example:  
-*create user rehan123 Fahmi_Roihanul_Firdaus passwordku123*\n
+*!create user rehan123 Fahmi_Roihanul_Firdaus passwordku123*\n
 *UPDATE* 
 value of <id_name> is your username/id_login in the system 
 value of <password_user/name> is your user password/name 
 value of <old_value> is your user password/name old value 
 value of <new_value> is your user password/name new value 
 *Format message:* 
-update <id_name> <password_user/name> <old_value> <new_value> 
+!update <id_name> <password_user/name> <old_value> <new_value> 
 example:  
-*update rehan1 password_user rehan123 rehan1234* 
+*!update rehan1 password_user rehan123 rehan1234* 
 OR 
-*update rehan1 name rehan_firdaus fahmi_roihanul_firdaus*\n 
+*!update rehan1 name rehan_firdaus fahmi_roihanul_firdaus*\n 
 *DELETE* 
 value of <id_name> is your username/id_login in the system 
 value of <password> is your user password 
 *Format message:* 
-delete user <id_name> <password> 
+!delete user <id_name> <password> 
 example:  
-*delete user rehan123 passwordku123*
+*!delete user rehan123 passwordku123*
 
 if you already have user, please type *!help balance* to start your journey
 '''
@@ -43,27 +43,27 @@ value of <total_amount> is nominal of your amount example: 2.000.000
 value of <usage> is ['food', 'salary', 'entertain', 'bill', 'other'] 
 value of <date> is in format 'YYYY-mm-dd' 
 *Format message:* 
-set <name> <type> <total_amount> <usage> 
+!set <name> <type> <total_amount> <usage> 
 OR 
-set <name> <type> <total_amount> <usage> <date> 
+!set <name> <type> <total_amount> <usage> <date> 
 example:  
 *set rehan1 income 100.000.000 salary* 
 OR
-*set rehan1 income 100.000.000 salary 2021-08-17*\n 
+*!set rehan1 income 100.000.000 salary 2021-08-17*\n 
 *GET* 
 value of <id_name> is your username/id login in the system
 value of <date_start> is in format 'YYYY-mm-dd' 
 value of <date_end> is in format 'YYYY-mm-dd' 
 *Format message:* 
-get <name> report <date_start> <date_end> 
+!get <name> report <date_start> <date_end> 
 OR 
-get <id_name> <puropse> all> 
+!get <id_name> <puropse> all> 
 example:  
-*get rehan1 report 2021-08-17 2021-09-17* 
+*!get rehan1 report 2021-08-17 2021-09-17* 
 OR 
-*get rehan1 report all*
+*!get rehan1 report all*
 OR 
-*get rehan1 password*
+*!get rehan1 password*
 ''' 
 
 class DailyFinanceRequest(http.Controller):
