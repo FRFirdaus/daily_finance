@@ -47,7 +47,7 @@ value of <date> is in format 'YYYY-mm-dd'
 OR 
 !set <name> <type> <total_amount> <usage> <date> 
 example:  
-*set rehan1 income 100.000.000 salary* 
+*!set rehan1 income 100.000.000 salary* 
 OR
 *!set rehan1 income 100.000.000 salary 2021-08-17*\n 
 *GET* 
