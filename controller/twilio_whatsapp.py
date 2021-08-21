@@ -366,7 +366,7 @@ class DailyFinanceRequest(http.Controller):
 		finance_report_id = request.env['finance.report'].sudo().browse(report_id)
 		base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
 		report_ref = 'daily_finance.finance_pdf_report'
-		raport_pdf_name = "Report_Finance_%s" % (finance_report_id.partner_id.name)
+		raport_pdf_name = "Report_Finance_%s" % (finance_report_id.partner_id.name.replace(" ", "_"))
 		return "%s/api/v1/%s/%s/%s" % (
 			base_url, 
 			report_ref, 
