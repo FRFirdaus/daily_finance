@@ -3,7 +3,7 @@ from odoo import fields, models, api, _
 class FinanceReport(models.Model):
     _name = 'finance.report'
 
-    partner_id = fields.Many2one('res.partner')
+    partner_id = fields.Many2one('res.partner', required=True, default=lambda self: self.env.user.partner_id)
     start_date = fields.Date()
     end_date = fields.Date()
     report_line_ids = fields.One2many('finance.report.line', 'finance_report_id')
