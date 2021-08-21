@@ -4,6 +4,68 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 from twilio.rest import Client
 
+message_rules_user = '''
+*CREATE*
+value of <id_name> is your username/id_login in the system
+value of <name> is your complete name, fill it like email no space
+value of <password> is your user password 
+*Format message:* 
+create user <id_name> <name> <password> 
+example:  
+*create user rehan123 Fahmi_Roihanul_Firdaus passwordku123*\n
+*UPDATE* 
+value of <id_name> is your username/id_login in the system 
+value of <password_user/name> is your user password/name 
+value of <old_value> is your user password/name old value 
+value of <new_value> is your user password/name new value 
+*Format message:* 
+update <id_name> <password_user/name> <old_value> <new_value> 
+example:  
+*update rehan1 password_user rehan123 rehan1234* 
+OR 
+*update rehan1 name rehan_firdaus fahmi_roihanul_firdaus*\n 
+*DELETE* 
+value of <id_name> is your username/id_login in the system 
+value of <password> is your user password 
+*Format message:* 
+delete user <id_name> <password> 
+example:  
+*delete user rehan123 passwordku123*
+
+if you already have user, please type *!help balance* to start your journey
+'''
+
+message_rules_user_balance = '''
+*SET* 
+value of <id_name> is your username/id_login in the system 
+value of <type> is 'income' or 'outcome' 
+value of <total_amount> is nominal of your amount example: 2.000.000 
+value of <usage> is ['food', 'salary', 'entertain', 'bill', 'other'] 
+value of <date> is in format 'YYYY-mm-dd' 
+*Format message:* 
+set <name> <type> <total_amount> <usage> 
+OR 
+set <name> <type> <total_amount> <usage> <date> 
+example:  
+*set rehan1 income 100.000.000 salary* 
+OR
+*set rehan1 income 100.000.000 salary 2021-08-17*\n 
+*GET* 
+value of <id_name> is your username/id login in the system
+value of <date_start> is in format 'YYYY-mm-dd' 
+value of <date_end> is in format 'YYYY-mm-dd' 
+*Format message:* 
+get <name> report <date_start> <date_end> 
+OR 
+get <id_name> <puropse> all> 
+example:  
+*get rehan1 report 2021-08-17 2021-09-17* 
+OR 
+*get rehan1 report all*
+OR 
+*get rehan1 password*
+''' 
+
 class DailyFinanceRequest(http.Controller):
 	common_msg = "```Please read the format message! you can type '!help' on the chat to see it.```"
 
@@ -15,7 +77,10 @@ class DailyFinanceRequest(http.Controller):
 		msg = ""
 		
 		if body == "!help":
-			msg = self.message_rules()
+			msg = message_rules_user
+			return self.response_message_whatsapp(msg)
+		elif body == "!help balance":
+			msg = message_rules_user_balance
 			return self.response_message_whatsapp(msg)
 
 		if body and body_split[0][0] == "!" and body_split[0] not in ['!set', '!get', '!create', '!delete', '!update']:
@@ -146,65 +211,6 @@ class DailyFinanceRequest(http.Controller):
 		
 		msg = "*Success*: \U0001f973 ```Success create new user, login: %s | password: %s```" % (user_id.login, body_split[4])
 		return self.response_message_whatsapp(msg)
-
-	def message_rules(self):
-		result = "Rules: " \
-		"\n*CREATE*" \
-		"\nvalue of <id_name> is your username/id_login in the system" \
-		"\nvalue of <name> is your complete name, fill it like email no space" \
-		"\nvalue of <password> is your user password" \
-		"\n*Format message:*" \
-		"\ncreate user <id_name> <name> <password>" \
-		"\nexample: " \
-		"\n*create user rehan123 Fahmi_Roihanul_Firdaus passwordku123*\n" \
-		"\n*UPDATE*" \
-		"\nvalue of <id_name> is your username/id_login in the system" \
-		"\nvalue of <password_user/name> is your user password/name" \
-		"\nvalue of <old_value> is your user password/name old value" \
-		"\nvalue of <new_value> is your user password/name new value" \
-		"\n*Format message:*" \
-		"\nupdate <id_name> <password_user/name> <old_value> <new_value>" \
-		"\nexample: " \
-		"\n*update rehan1 password_user rehan123 rehan1234*" \
-		"\nOR" \
-		"\n*update rehan1 name rehan_firdaus fahmi_roihanul_firdaus*" \
-		"\n*DELETE*" \
-		"\nvalue of <id_name> is your username/id_login in the system" \
-		"\nvalue of <password> is your user password" \
-		"\n*Format message:*" \
-		"\ndelete user <id_name> <password>" \
-		"\nexample: " \
-		"\n*delete user rehan123 passwordku123*\n" \
-		"\n*SET*" \
-		"\nvalue of <id_name> is your username/id_login in the system" \
-		"\nvalue of <type> is 'income' or 'outcome'" \
-		"\nvalue of <total_amount> is nominal of your amount example: 2.000.000" \
-		"\nvalue of <usage> is ['food', 'salary', 'entertain', 'bill', 'other']" \
-		"\nvalue of <date> is in format 'YYYY-mm-dd'" \
-		"\n*Format message:*" \
-		"\nset <name> <type> <total_amount> <usage>" \
-		"\nOR" \
-		"\nset <name> <type> <total_amount> <usage> <date>" \
-		"\nexample: " \
-		"\n*set rehan1 income 100.000.000 salary*" \
-		"\nOR" \
-		"\n*set rehan1 income 100.000.000 salary 2021-08-17*\n" \
-		"\n*GET*" \
-		"\nvalue of <id_name> is your username/id login in the system" \
-		"\nvalue of <date_start> is in format 'YYYY-mm-dd'" \
-		"\nvalue of <date_end> is in format 'YYYY-mm-dd'" \
-		"\n*Format message:*" \
-		"\nget <name> report <date_start> <date_end>" \
-		"\nOR" \
-		"\nget <id_name> <puropse> all>" \
-		"\nexample: " \
-		"\n*get rehan1 report 2021-08-17 2021-09-17*" \
-		"\nOR" \
-		"\n*get rehan1 report all*"
-		"\nOR" \
-		"\n*get rehan1 password*"
-
-		return result
 
 	def get_data(self, get_partner, body_split):
 		all_total_income = 0
@@ -362,7 +368,8 @@ class DailyFinanceRequest(http.Controller):
 		report_ref = 'daily_finance.finance_pdf_report'
 		raport_pdf_name = "Report_Finance_%s" % (finance_report_id.partner_id.name)
 		return "%s/api/v1/%s/%s/%s" % (
-			base_url,
+			# base_url, 
+			"https://46a49af89f3f.ngrok.io",
 			report_ref, 
 			report_id, 
 			raport_pdf_name
