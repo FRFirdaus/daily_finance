@@ -25,6 +25,8 @@ class DailyFinance(models.Model):
     balance = fields.Float(compute="_compute_total_balance")
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.user.company_id.currency_id)
 
+    description = fields.Text()
+
     emoji = fields.Selection([
         ('income', '\U0001f60e'),
         ('outcome', '\U0001f62d')
