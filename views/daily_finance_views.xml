@@ -53,6 +53,18 @@
         </field>
     </record>
 
+    <record id="daily_finance_search_view" model="ir.ui.view">
+        <field name="name">daily_finance_search_view</field>
+        <field name="model">daily.finance</field>
+        <field name="arch" type="xml">
+            <search string="Search Subjects">
+               <separator/>
+                    <filter string="Finance Date" name="filter_finance" date="date"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
     <record id="daily_finance_graph_view" model="ir.ui.view">
         <field name="name">daily_finance_graph_view</field>
         <field name="model">daily.finance</field>
