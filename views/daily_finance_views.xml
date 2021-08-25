@@ -58,7 +58,22 @@
         <field name="model">daily.finance</field>
         <field name="arch" type="xml">
             <search string="Search Subjects">
-               <separator/>
+                <filter name="filter_income" string="Income" domain="[('type','=','income')]"/>
+                <filter name="filter_outcome" string="Outcome" domain="[('type','=','outcome')]"/>
+                <separator/>
+                <filter name="filter_salary" string="Salary" domain="[('usage','=','salary')]"/>
+                <filter name="filter_food" string="Food" domain="[('usage','=','food')]"/>            
+                <filter name="filter_entertain" string="Entertainment" domain="[('usage','=','entertain')]"/>            
+                <filter name="filter_bill" string="Bill" domain="[('usage','=','bill')]"/>            
+                <filter name="filter_charity" string="Charity" domain="[('usage','=','charity')]"/>            
+                <filter name="filter_other" string="Other" domain="[('usage','=','other')]"/>            
+                <group string="Group By">
+                    <filter name="group_type" string="Daily Finance by Type"
+                            context="{'group_by': 'type'}"/>
+                    <filter name="group_usage" string="Daily Finance by Usage"
+                            context="{'group_by': 'usage'}"/>
+                </group>
+                <separator/>
                     <filter string="Finance Date" name="filter_finance" date="date"/>
                 <separator/>
             </search>
