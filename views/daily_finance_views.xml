@@ -10,6 +10,7 @@
                 <field name="date"/>
                 <field name="type"/>
                 <field name="usage" string="Balance Type"/>
+                <field name="description"/>
                 <field name="balance" sum="Total Balance" widget="monetary"/>
                 <field name="emoji" string=" "/>
             </tree>
