@@ -5,7 +5,7 @@
         <field name="model">daily.finance</field>
         <field name="arch" type="xml">
             <tree decoration-danger="type=='outcome'" decoration-success="type=='income'">
-                <field name="partner_id"/>
+                <field name="partner_id" optional="show"/>
                 <field name="currency_id" invisible="1"/>
                 <field name="date"/>
                 <field 
@@ -20,9 +20,9 @@
                     decoration-warning="usage != False"
                     widget="badge"
                 />
-                <field name="description"/>
+                <field name="description" optional="show"/>
                 <field name="balance" sum="Total Balance" widget="monetary"/>
-                <field name="emoji" string=" "/>
+                <field name="emoji" string=" " optional="show"/>
             </tree>
         </field>
     </record>
