@@ -13,7 +13,7 @@
     'website': "https://www.frayhands.com",
     'category': 'Uncategorized',
     'version': '0.1',
-    'depends': ['base', 'mail', 'code_backend_theme'],
+    'depends': ['base', 'mail'],
     'data': [
         'security/group.xml',
         'security/ir.model.access.csv',

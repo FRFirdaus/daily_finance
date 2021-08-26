@@ -3,6 +3,7 @@ from datetime import datetime
 
 class DailyFinance(models.Model):
     _name = 'daily.finance'
+    _inherit = ['mail.thread']
 
     partner_id = fields.Many2one('res.partner', required=True, default=lambda self: self.env.user.partner_id)
     type = fields.Selection([

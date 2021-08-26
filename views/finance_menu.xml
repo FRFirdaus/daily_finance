@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <menuitem id="daily_finance_menu" name="Daily Finance" groups="group_daily_finance_user,group_daily_finance_manager" action="daily_finance_action" sequence="1" web_icon="code_backend_theme,static/src/img/icons/Invoicing.png"/>
+    <menuitem id="daily_finance_menu" name="Daily Finance" groups="group_daily_finance_user,group_daily_finance_manager" action="daily_finance_action" sequence="1" web_icon="daily_finance,static/src/icon/daily_finance.png"/>
     <menuitem id="finance_report_menu" parent="daily_finance_menu" sequence="10" groups="group_daily_finance_user,group_daily_finance_manager" action="finance_report_action" name="Finance Report"/>
     <menuitem id="finance_report_wizard_menu" parent="daily_finance_menu" sequence="20" groups="group_daily_finance_user,group_daily_finance_manager" action="finance_report_wizard_action" name="Create Finance Report"/>
 </odoo>
