@@ -10,6 +10,8 @@ class FinanceReport(models.Model):
     sub_total = fields.Float(digits = (12,2), readonly=True)
     total_balance = fields.Float(digits = (12,2), readonly=True)
 
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.user.company_id.currency_id)
+
     def _get_report_base_filename(self):
         return self.display_name
 
@@ -32,6 +34,7 @@ class FinanceReportLine(models.Model):
         ('outcome', 'Outcome')
     ])
 
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.user.company_id.currency_id)
     food = fields.Char()
     salary = fields.Char()
     entertain = fields.Char()

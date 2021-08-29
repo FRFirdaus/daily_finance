@@ -4,7 +4,7 @@
         <field name="name">finance_report_tree</field>
         <field name="model">finance.report</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create='0' edit='0'>
                 <field name="partner_id"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
@@ -40,12 +40,14 @@
                             <field name="bill"/>
                             <field name="charity"/>
                             <field name="other"/>
-                            <field name="total"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="total" widget="monetary"/>
                         </tree>
                     </field>
                     <group class="oe_subtotal_footer oe_right">
-                        <field name="sub_total"/>
-                        <field name="total_balance"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="sub_total" widget="monetary"/>
+                        <field name="total_balance" widget="monetary"/>
                     </group>
                 </sheet>
             </form>
