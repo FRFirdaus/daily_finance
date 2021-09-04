@@ -24,6 +24,27 @@ class FinanceReport(models.Model):
             )))
 
         return result
+    
+    def generate_pdf_url(self):
+		base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+		report_ref = 'daily_finance.finance_pdf_report'
+		raport_pdf_name = "Report Finance %s" % (self.partner_id.name)
+		return "%s/api/v1/%s/%s/%s" % (
+			base_url, 
+			report_ref, 
+			self.id, 
+			raport_pdf_name.replace(" ", "%20")
+		)
+
+	def button_preview_pdf(self):
+		media_url = self.generate_pdf_url()
+		return {                   
+			'name'     : 'Preview Report',
+			'res_model': 'ir.actions.act_url',
+			'type'     : 'ir.actions.act_url',
+			'target'   : 'new',
+			'url'      : media_url
+		}
 
 class FinanceReportLine(models.Model):
     _name = 'finance.report.line'

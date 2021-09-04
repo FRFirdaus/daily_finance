@@ -18,8 +18,17 @@
         <field name="name">finance_report_form</field>
         <field name="model">finance.report</field>
         <field name="arch" type="xml">
-            <form>
+            <form create='0' edit='0'>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="button_preview_pdf"
+                            type="object"
+                            class="oe_stat_button"
+                            string="Preview as PDF"
+                            icon="fa-eye">
+                        </button>
+                    </div>
                     <group>
                         <group>
                             <field name="partner_id" attrs="{'readonly':True}"/>
