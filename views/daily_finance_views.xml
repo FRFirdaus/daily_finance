@@ -119,7 +119,7 @@
                 <field name="emoji" string=" "/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click" style="background: linear-gradient(#4336fb, #7d73ff); color: white; border-radius: 5px !important">
+                        <div t-attf-class="oe_kanban_global_click" style="background: url(https://p4.wallpaperbetter.com/wallpaper/632/670/403/cool-abstract-background-wallpaper-preview.jpg); color: white; border-radius: 5px !important">
                             <div class="oe_kanban_details">
                                 <div>
                                     <h1>
