@@ -48,7 +48,7 @@
                         <group string="Loan Information">
                             <field name="loan_type" widget="radio"/>
                             <field name="matching_code"/>
-                            <field name="matching_loan_id" domain="[('type', '!=', type), ('id', '!=', id)]" attrs="{'required': [('loan_type', '=', 'payment')], 'invisible': [('loan_type', '!=', 'payment')]}"/>
+                            <field name="matching_loan_id" domain="[('loan_type', '=', 'loan'), ('type', '!=', type), ('id', '!=', id)]" attrs="{'required': [('loan_type', '=', 'payment')], 'invisible': [('loan_type', '!=', 'payment')]}"/>
                         </group>
                     </group>
                 </sheet>
