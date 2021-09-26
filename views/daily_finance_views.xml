@@ -94,6 +94,77 @@
         </field>
     </record>
 
+    <record id="daily_finance_kanban_view" model="ir.ui.view">
+        <field name="name">daily_finance_kanban</field>
+        <field name="model">daily.finance</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban" quick_create="false">
+                <field name="partner_id" optional="show"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="date"/>
+                <field 
+                    name="type"
+                    decoration-success="type == 'income'" 
+                    decoration-danger="type == 'outcome'"
+                    widget="badge"
+                />
+                <field 
+                    name="usage" 
+                    string="Balance Type"
+                    decoration-warning="usage != False"
+                    widget="badge"
+                />
+                <field name="description" optional="show"/>
+                <field name="balance" sum="Total Balance" widget="monetary"/>
+                <field name="emoji" string=" "/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click" style="background-color: #e2e0ff !important; border-radius: 5px !important">
+                            <div class="oe_kanban_details">
+                                <div>
+                                    <h1>
+                                        <field name="emoji"/>
+                                        <field name="balance" widget="monetary"/>
+                                    </h1>
+                                </div>
+                                <div style="border-top: 2px solid; margin: 5px 0px">
+                                </div>
+                                <div>
+                                    <field 
+                                        name="type"
+                                        decoration-success="type == 'income'" 
+                                        decoration-danger="type == 'outcome'"
+                                        widget="badge"
+                                    />
+                                    <field 
+                                        name="usage" 
+                                        string="Balance Type"
+                                        decoration-warning="usage != False"
+                                        widget="badge"
+                                    />
+                                </div>
+                                <div t-if="record.date.value">
+                                    <field 
+                                        name="date"
+                                        decoration-info="date != False"
+                                        widget="badge"
+                                    />
+                                </div>
+                                <div t-if="record.description.value">
+                                    <field 
+                                        name="description" 
+                                        decoration-info="description != False"
+                                        widget="badge"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="daily_finance_graph_view" model="ir.ui.view">
         <field name="name">daily_finance_graph_view</field>
         <field name="model">daily.finance</field>
@@ -109,6 +180,6 @@
     <record id="daily_finance_action" model="ir.actions.act_window">
         <field name="name">Daily Finance</field>
         <field name="res_model">daily.finance</field>
-        <field name="view_mode">tree,form,graph</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
     </record>
 </odoo>
