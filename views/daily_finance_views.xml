@@ -150,10 +150,8 @@
                                         decoration-warning="usage != False"
                                         widget="badge"
                                     />
-                                    <div t-if="record.loan_type.value">
-                                        <t t-set="loan_code" t-value="record.loan_type.value + ' ' + '&#10150;' + ' ' + record.matching_code.value"/>
-                                        <span class="badge badge-pill o_field_badge o_field_widget .bg-info-light bg-info-purple" t-esc="loan_code"/>
-                                    </div>
+                                    <t t-set="loan_code" t-value="record.loan_type.value + ' ' + '&#10150;' + ' ' + record.matching_code.value"/>
+                                    <span t-if="record.loan_type.value" class="badge badge-pill o_field_badge o_field_widget .bg-info-light bg-info-purple" t-esc="loan_code"/>
                                 </div>
                                 <div t-if="record.partner_id.value">
                                     <t t-set="partner_date" t-value="record.partner_id.value + ' ' + '&#10150;' + ' ' + record.date.value"/>
