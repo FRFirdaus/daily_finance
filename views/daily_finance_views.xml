@@ -91,6 +91,8 @@
                             context="{'group_by': 'type'}"/>
                     <filter name="group_usage" string="Daily Finance by Usage"
                             context="{'group_by': 'usage'}"/>
+                    <filter name="group_loan" string="Daily Finance Loan"
+                            context="{'group_by': 'loan_type'}"/>
                 </group>
                 <separator/>
                     <filter string="Finance Date" name="filter_finance" date="date"/>
