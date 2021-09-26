@@ -119,7 +119,7 @@
                 <field name="emoji" string=" "/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click" style="background-color: #e2e0ff !important; border-radius: 5px !important">
+                        <div t-attf-class="oe_kanban_global_click" style="background: linear-gradient(#4336fb, #7d73ff); color: white; border-radius: 5px !important">
                             <div class="oe_kanban_details">
                                 <div>
                                     <h1>
@@ -144,18 +144,8 @@
                                     />
                                 </div>
                                 <div t-if="record.partner_id.value">
-                                    <field 
-                                        name="partner_id"
-                                        decoration-info="partner_id != False"
-                                        widget="badge"
-                                    />
-                                </div>
-                                <div t-if="record.date.value">
-                                    <field 
-                                        name="date"
-                                        decoration-info="date != False"
-                                        widget="badge"
-                                    />
+                                    <t t-set="partner_date" t-value="record.partner_id.value + ' ' + '&#10150;' + ' ' + record.date.value"/>
+                                    <span class="badge badge-pill o_field_badge o_field_widget bg-info-light" t-esc="partner_date"/>
                                 </div>
                                 <div t-if="record.description.value">
                                     <field 
