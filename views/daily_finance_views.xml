@@ -143,6 +143,13 @@
                                         widget="badge"
                                     />
                                 </div>
+                                <div t-if="record.partner_id.value">
+                                    <field 
+                                        name="partner_id"
+                                        decoration-info="partner_id != False"
+                                        widget="badge"
+                                    />
+                                </div>
                                 <div t-if="record.date.value">
                                     <field 
                                         name="date"
