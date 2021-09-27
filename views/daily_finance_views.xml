@@ -170,7 +170,6 @@
                                         <field name="loan_payment_ids" t-if="record.loan_payment_ids.value"/>
                                     </p>
                                 </div>
-                                </div>
                                 <div t-if="record.partner_id.value">
                                     <t t-set="partner_date" t-value="record.partner_id.value + ' ' + '&#10150;' + ' ' + record.date.value"/>
                                     <span class="badge badge-pill o_field_badge o_field_widget bg-info-light" t-esc="partner_date"/>
