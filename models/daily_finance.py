@@ -41,6 +41,23 @@ class DailyFinance(models.Model):
     matching_code = fields.Char()
     matching_loan_id = fields.Many2one(_name)
 
+    loan_amount_due = fields.Float(compute="_compute_loan_amount_due")
+    loan_payment_ids = fields.Char(compute="_compute_loan_amount_due")
+
+    def _compute_loan_amount_due(self):
+        for rec in self:
+            if rec.loan_type and rec.loan_type == "loan" and rec.matching_code:
+                payments_total = self.search([('loan_type', '=', 'payment'), ('matching_loan_id', '=', rec.id)])
+                total_paid = sum(payment.total for payment in payments_total)
+                rec.loan_amount_due = rec.total - total_paid
+                if payments_total:
+                    rec.loan_payment_ids = "| Payment ID's: %s" % (payments_total.ids)
+                else:
+                    rec.loan_payment_ids = "| Payment ID's: None" % (payments_total.ids)
+            else:
+                rec.loan_amount_due = 0
+                rec.loan_payment_ids = ""
+
     @api.onchange('matching_loan_id', 'loan_type')
     def matching_loan_data(self):
         if self.matching_loan_id:

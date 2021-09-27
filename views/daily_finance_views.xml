@@ -49,6 +49,8 @@
                             <field name="loan_type" widget="radio"/>
                             <field name="matching_code"/>
                             <field name="matching_loan_id" domain="[('loan_type', '=', 'loan'), ('type', '!=', type), ('id', '!=', id)]" attrs="{'required': [('loan_type', '=', 'payment')], 'invisible': [('loan_type', '!=', 'payment')]}"/>
+                            <field name="loan_amount_due" widget="monetary" attrs="{'invisible': [('loan_type', '=', 'payment')]}"/>
+                            <field name="loan_payment_ids" attrs="{'invisible': [('loan_type', '=', 'payment')]}"/>
                         </group>
                     </group>
                 </sheet>
@@ -106,6 +108,7 @@
         <field name="model">daily.finance</field>
         <field name="arch" type="xml">
             <kanban class="o_res_partner_kanban" quick_create="false">
+                <field name="id"/>
                 <field name="partner_id" optional="show"/>
                 <field name="currency_id" invisible="1"/>
                 <field name="date"/>
@@ -127,6 +130,8 @@
                 <field name="loan_type"/>
                 <field name="matching_code"/>
                 <field name="matching_loan_id"/>
+                <field name="loan_amount_due" widget="monetary"/>
+                <field name="loan_payment_ids"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click" style="background: url(https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?size=626&amp;ext=jpg); color: white; border-radius: 5px !important">
@@ -153,7 +158,18 @@
                                         widget="badge"
                                     />
                                     <t t-set="loan_code" t-value="record.loan_type.value + ' ' + '&#10150;' + ' ' + record.matching_code.value"/>
-                                    <span t-if="record.loan_type.value" class="badge badge-pill o_field_badge o_field_widget .bg-info-light bg-info-purple" t-esc="loan_code"/>
+                                    <t t-set="loan_code_payment" t-value="'[' + record.id.value + ']' + ' ' + record.loan_type.value + ' ' + '&#10150;' + ' ' + record.matching_code.value"/>
+                                    <span t-if="!record.matching_loan_id.value &amp;&amp; record.loan_type.value" class="badge badge-pill o_field_badge o_field_widget .bg-info-light bg-info-purple" t-esc="loan_code"/>
+                                    <span t-if="record.matching_loan_id.value &amp;&amp; record.loan_type.value" class="badge badge-pill o_field_badge o_field_widget .bg-info-light bg-info-purple" t-esc="loan_code_payment"/>
+                                </div>
+                                <div t-if="!record.matching_loan_id.value &amp;&amp; record.loan_type.value">
+                                    <t t-set="loan_amount_due_total" t-value="'Loan Due' + ' ' + '&#10150;' + ' '"/>
+                                    <p class="badge badge-pill o_field_badge o_field_widget bg-info-light">
+                                        <span t-esc="loan_amount_due_total"/>
+                                        <field name="loan_amount_due" widget="monetary"/>
+                                        <field name="loan_payment_ids" t-if="record.loan_payment_ids.value"/>
+                                    </p>
+                                </div>
                                 </div>
                                 <div t-if="record.partner_id.value">
                                     <t t-set="partner_date" t-value="record.partner_id.value + ' ' + '&#10150;' + ' ' + record.date.value"/>
