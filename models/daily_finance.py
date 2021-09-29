@@ -83,22 +83,22 @@ class DailyFinance(models.Model):
         result = []
         for rec in self:
             if not rec.loan_type:
-                result.append((rec.id, "[%s] %s | %s | %s for %s" % (
+                result.append((rec.id, "[%s] %s | %s | %s | %s" % (
                     'OUT' if rec.type == 'outcome' else 'IN', 
                     rec.partner_id.name, 
                     rec.date,
-                    rec.total,
-                    rec.usage
+                    rec.usage,
+                    rec.total
                 )))
             else:
-                result.append((rec.id, "[%s][%s/%s] %s | %s | %s for %s" % (
+                result.append((rec.id, "[%s][%s/%s] %s | %s | %s | %s" % (
                     'OUT' if rec.type == 'outcome' else 'IN',
                     "LOAN" if rec.loan_type == 'loan' else "PAYMENT",
                     rec.matching_code,
                     rec.partner_id.name, 
                     rec.date,
-                    rec.total,
-                    rec.usage
+                    rec.usage,
+                    rec.total
                 )))
 
         return result
