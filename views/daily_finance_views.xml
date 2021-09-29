@@ -45,7 +45,7 @@
                             <field name="description"/>
                             <field name="total" widget="monetary"/>
                         </group>
-                        <group string="Loan Information">
+                        <group string="Loan Information" attrs="{'invisible': [('usage', '!=', 'other')]}">
                             <field name="loan_type" widget="radio"/>
                             <field name="matching_code"/>
                             <field name="matching_loan_id" domain="[('loan_type', '=', 'loan'), ('type', '!=', type), ('id', '!=', id)]" attrs="{'required': [('loan_type', '=', 'payment')], 'invisible': [('loan_type', '!=', 'payment')]}"/>

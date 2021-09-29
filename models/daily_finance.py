@@ -38,11 +38,19 @@ class DailyFinance(models.Model):
         ('payment', 'Payment')
     ])
 
-    matching_code = fields.Char()
+    matching_code = fields.Char(compute="_compute_matching_loan_code")
     matching_loan_id = fields.Many2one(_name)
 
     loan_amount_due = fields.Float(compute="_compute_loan_amount_due")
     loan_payment_ids = fields.Char(compute="_compute_loan_amount_due")
+
+    def _compute_matching_loan_code(self):
+        self.matching_code = ""
+        if self.loan_type and self.loan_type == 'loan':
+            matching_code = "LN%s" % (self.id)
+            self.matching_code = matching_code
+        if self.loan_type == 'payment' and self.matching_loan_id:
+            self.matching_code = self.matching_loan_id.matching_code
 
     def _compute_loan_amount_due(self):
         for rec in self:
@@ -57,17 +65,6 @@ class DailyFinance(models.Model):
             else:
                 rec.loan_amount_due = 0
                 rec.loan_payment_ids = ""
-
-    @api.onchange('matching_loan_id', 'loan_type')
-    def matching_loan_data(self):
-        if self.matching_loan_id:
-            self.matching_code = self.matching_loan_id.matching_code
-
-    @api.constrains('loan_type')
-    def matching_loan_finance(self):
-        if self.loan_type and self.loan_type == 'loan':
-            matching_code = "LN%s" % (self.id)
-            self.matching_code = matching_code
 
     def _compute_emoji(self):
         for rec in self:
