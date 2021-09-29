@@ -84,7 +84,7 @@ class DailyFinance(models.Model):
         for rec in self:
             if not rec.loan_type:
                 result.append((rec.id, "[%s] %s | %s | %s for %s" % (
-                    rec.type, 
+                    'OUT' if rec.type == 'outcome' else 'IN', 
                     rec.partner_id.name, 
                     rec.date,
                     rec.total,
@@ -92,7 +92,7 @@ class DailyFinance(models.Model):
                 )))
             else:
                 result.append((rec.id, "[%s][%s/%s] %s | %s | %s for %s" % (
-                    rec.type,
+                    'OUT' if rec.type == 'outcome' else 'IN',
                     "LOAN" if rec.loan_type == 'loan' else "PAYMENT",
                     rec.matching_code,
                     rec.partner_id.name, 
