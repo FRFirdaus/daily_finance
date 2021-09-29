@@ -45,12 +45,13 @@ class DailyFinance(models.Model):
     loan_payment_ids = fields.Char(compute="_compute_loan_amount_due")
 
     def _compute_matching_loan_code(self):
-        self.matching_code = ""
-        if self.loan_type and self.loan_type == 'loan':
-            matching_code = "LN%s" % (self.id)
-            self.matching_code = matching_code
-        if self.loan_type == 'payment' and self.matching_loan_id:
-            self.matching_code = self.matching_loan_id.matching_code
+        for rec in self:
+            rec.matching_code = ""
+            if rec.loan_type and rec.loan_type == 'loan':
+                matching_code = "LN%s" % (rec.id)
+                rec.matching_code = matching_code
+            if rec.loan_type == 'payment' and rec.matching_loan_id:
+                rec.matching_code = rec.matching_loan_id.matching_code
 
     def _compute_loan_amount_due(self):
         for rec in self:
