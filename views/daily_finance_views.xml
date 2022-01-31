@@ -107,10 +107,10 @@
         <field name="name">daily_finance_calendar</field>
         <field name="model">daily.finance</field>
         <field name="arch" type="xml">
-            <calendar date_start="date" string="Daily Finance" mode="month" color="usage" quick_add="0">
+            <calendar date_start="date" string="Daily Finance" mode="month" color="partner_id" quick_add="0">
                 <field name="partner_id"/>
                 <field name="type" filters="1"/>
-                <field name="currency_id" invisible="1"/>
+                <field name="currency_id"/>
                 <field name="usage" filters="1"/>
                 <field name="date"/>
                 <field name="description"/>
