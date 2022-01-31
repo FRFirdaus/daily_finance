@@ -3,6 +3,8 @@
 we create whatsapp bot integrated with twilio to communicate to odoo environtment
 system that will write your balance journal (balance movement)
 
+manifest module: https://github.com/FRFirdaus/backend_theme_odoo12 & https://github.com/FRFirdaus/web_responsive
+
 akun test di https://finance.frayhands.com/
 
 id: test_account
