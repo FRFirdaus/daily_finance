@@ -48,3 +48,7 @@ Desktop:
 ![image](https://user-images.githubusercontent.com/40462921/151815284-f9bb3912-8f60-4812-905d-9a230b531cac.png)
 Mobile:
 ![image](https://user-images.githubusercontent.com/40462921/151815388-94972505-cc87-4dc4-9d59-281dae2cb511.png)
+
+6. Finance Report:
+![image](https://user-images.githubusercontent.com/40462921/151833914-5191928c-3f8c-48a1-b6b1-6d61388f154d.png)
+![image](https://user-images.githubusercontent.com/40462921/151834043-0402d045-4a8b-49d2-b839-342847f3cb3a.png)
