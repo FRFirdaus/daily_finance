@@ -11,10 +11,7 @@ class DailyFinance(models.Model):
         ('outcome', 'Outcome')
     ])
 
-    color_type_calendar = fields.Selection([
-        ('1', 'Income_1'),
-        ('2', 'Outcome_2')
-    ], compute="_compute_color_calendar_type")
+    color_type_calendar = fields.Char(compute="_compute_color_calendar_type")
 
     total = fields.Float()
     usage = fields.Selection([
@@ -51,9 +48,9 @@ class DailyFinance(models.Model):
 
     def _compute_color_calendar_type(self):
         for rec in self:
-            rec.color_type_calendar = "1"
+            rec.color_type_calendar = "10"
             if rec.type == 'outcome':
-                rec.color_type_calendar = "2"
+                rec.color_type_calendar = "1"
 
     def _compute_matching_loan_code(self):
         for rec in self:
