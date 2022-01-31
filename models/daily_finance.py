@@ -48,9 +48,9 @@ class DailyFinance(models.Model):
 
     def _compute_color_calendar_type(self):
         for rec in self:
-            rec.color_type_calendar = "1"
+            rec.color_type_calendar = "10"
             if rec.type == 'outcome':
-                rec.color_type_calendar = "3"
+                rec.color_type_calendar = "1"
 
     def _compute_matching_loan_code(self):
         for rec in self:
