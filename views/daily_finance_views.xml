@@ -114,7 +114,7 @@
                 <field name="usage" filters="1"/>
                 <field name="date"/>
                 <field name="description"/>
-                <field name="balance" widget="monetary"/>
+                <field name="balance"/>
             </calendar>
         </field>
     </record>
