@@ -111,7 +111,7 @@
                 <field name="partner_id"/>
                 <field name="type" filters="1" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
-                <field name="usage"/>
+                <field name="usage" filters="1"/>
                 <field name="date"/>
                 <field name="description"/>
                 <field name="balance" widget="monetary"/>
