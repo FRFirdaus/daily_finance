@@ -204,6 +204,7 @@
     <record id="daily_finance_action" model="ir.actions.act_window">
         <field name="name">Daily Finance</field>
         <field name="res_model">daily.finance</field>
-        <field name="view_mode">kanban,tree,form,graph</field>
+        <field name="limit">500</field>
+        <field name="view_mode">tree,kanban,form,graph</field>
     </record>
 </odoo>
