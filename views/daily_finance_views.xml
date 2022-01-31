@@ -134,7 +134,7 @@
                 <field name="loan_payment_ids"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click" style="background: url(https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?size=626&amp;ext=jpg); color: white; border-radius: 5px !important">
+                        <div t-attf-class="oe_kanban_global_click" style="background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_ptqOhW_7hpLKOoVUkVqj1tbhU-8tbVYUvfR39OOoAqYkybGcf7LPvWdmFVS95pIIaw&amp;usqp=CAU); color: white; border-radius: 5px !important">
                             <div class="oe_kanban_details">
                                 <div>
                                     <h1>
