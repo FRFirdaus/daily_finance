@@ -150,7 +150,7 @@
                 <field name="loan_payment_ids"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click" style="background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_ptqOhW_7hpLKOoVUkVqj1tbhU-8tbVYUvfR39OOoAqYkybGcf7LPvWdmFVS95pIIaw&amp;usqp=CAU); color: white; border-radius: 5px !important">
+                        <div t-attf-class="oe_kanban_global_click" style="background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU_ptqOhW_7hpLKOoVUkVqj1tbhU-8tbVYUvfR39OOoAqYkybGcf7LPvWdmFVS95pIIaw&amp;usqp=CAU); background-size: 350px !important; color: white; border-radius: 5px !important">
                             <div class="oe_kanban_details">
                                 <div>
                                     <h1>
