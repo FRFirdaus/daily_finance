@@ -10,6 +10,7 @@ pass: test123
 
 https://www.youtube.com/watch?v=7t820PlErZE&t=797s
 
+Views:
 1. List View of Data Finance
 Desktop:
 ![image](https://user-images.githubusercontent.com/40462921/151793933-b96b6a2b-07b9-4e39-9b8c-3869c8aaf97f.png)
