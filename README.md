@@ -36,3 +36,8 @@ Desktop:
 Mobile:
 ![image](https://user-images.githubusercontent.com/40462921/151807684-ff7fa2ef-3baf-4199-bffe-8efcad58e06c.png)
 
+5. Graph View of Data:
+Desktop:
+![image](https://user-images.githubusercontent.com/40462921/151815284-f9bb3912-8f60-4812-905d-9a230b531cac.png)
+Mobile:
+![image](https://user-images.githubusercontent.com/40462921/151815388-94972505-cc87-4dc4-9d59-281dae2cb511.png)
