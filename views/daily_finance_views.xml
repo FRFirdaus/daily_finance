@@ -225,5 +225,6 @@
         <field name="res_model">daily.finance</field>
         <field name="limit">500</field>
         <field name="view_mode">tree,kanban,calendar,form,graph</field>
+        <field name="view_id" ref="daily_finance_tree_view"/>
     </record>
 </odoo>
