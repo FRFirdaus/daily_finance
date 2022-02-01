@@ -3,6 +3,7 @@
     <record id="daily_finance_tree_view" model="ir.ui.view">
         <field name="name">daily_finance_tree</field>
         <field name="model">daily.finance</field>
+        <field name="priority" eval="1"/>
         <field name="arch" type="xml">
             <tree decoration-danger="type=='outcome'" decoration-success="type=='income'">
                 <field name="partner_id" optional="show"/>
@@ -106,6 +107,7 @@
     <record id="daily_finance_calendar_view" model="ir.ui.view">
         <field name="name">daily_finance_calendar</field>
         <field name="model">daily.finance</field>
+        <field name="priority" eval="3"/>
         <field name="arch" type="xml">
             <calendar date_start="date" string="Daily Finance" mode="month" color="color_type_calendar" quick_add="0">
                 <field name="partner_id"/>
@@ -122,6 +124,7 @@
     <record id="daily_finance_kanban_view" model="ir.ui.view">
         <field name="name">daily_finance_kanban</field>
         <field name="model">daily.finance</field>
+        <field name="priority" eval="2"/>
         <field name="arch" type="xml">
             <kanban class="o_res_partner_kanban" quick_create="false">
                 <field name="id"/>
